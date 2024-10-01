@@ -1,0 +1,25 @@
+{
+  "name": "botbench",
+  "version": "0.0.3",
+  "description": "BotBench is an easy way of improving your bot and mitigating risks.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harmjanluth/botbench.git"
+  },
+  "author": "Harm Jan Luth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harmjanluth/botbench/issues"
+  },
+  "homepage": "https://github.com/harmjanluth/botbench#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "axios": "^1.7.7"
+  }
+}
