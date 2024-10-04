@@ -20,6 +20,8 @@
 ### Initialization
 
     const BotBench = require('botbench');
+    // (OR import BotBench from 'botbench';)
+
     const botBenchClient = new BotBench('YOUR_API_KEY');` 
 
 ### Sending Events
@@ -58,6 +60,8 @@
 	    type: 'user',
 	    threadId,
 	  });
+
+	  /* YOUR BOT LOGIC TO RESPOND */
 
 	  // Bot response
 	  await botBenchClient.send({
