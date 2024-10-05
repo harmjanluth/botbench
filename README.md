@@ -15,13 +15,15 @@
 
 `npm install botbench` 
 
-## Getting Started
+## BETA
+BotBench is currently in closed beta, if you want to join please send a message to beta@botbench.io to get your API-key.
+
+1. Obtain an API-key.
+2. Implement the tracking code
 
 ### Initialization
 
     const BotBench = require('botbench');
-    // (OR import BotBench from 'botbench';)
-
     const botBenchClient = new BotBench('YOUR_API_KEY');` 
 
 ### Sending Events
@@ -34,14 +36,14 @@
 	};
 	
 	// Non-blocking 
-	botBenchClient.send({ message: 'Hello, World!', type: 'user', threadId: 'YOUR_THREAD_ID', });
+	botBenchClient.track({ message: 'Hello, World!', type: 'user', threadId: 'YOUR_THREAD_ID', });
 
 	// Blocking 
-	botBenchClient.send({ message: 'Hello, World!', type: 'user', threadId: 'YOUR_THREAD_ID', }) 
+	botBenchClient.track({ message: 'Hello, World!', type: 'user', threadId: 'YOUR_THREAD_ID', }) 
 	.then((response) => { console.log('Event sent successfully:', response.data); })
 	.catch((error) => { console.error('Error sending event:', error.message); });
 
-**Note:** The `send` method automatically captures the client-side timestamp.
+**Note:** The `track` method automatically captures the client-side timestamp.
 
 ## Example Usage
 
@@ -55,16 +57,16 @@
 	  const threadId = 'YOUR_THREAD_ID';
 
 	  // User message
-	  await botBenchClient.send({
+	  await botBenchClient.track({
 	    message: 'Hello, bot!',
 	    type: 'user',
 	    threadId,
 	  });
 
-	  /* YOUR BOT LOGIC TO RESPOND */
+   	  /* ASSISTANT RESPONSE GENERATION CODE */
 
 	  // Bot response
-	  await botBenchClient.send({
+	  await botBenchClient.track({
 	    message: 'Hello! How can I assist you today?',
 	    type: 'bot',
 	    threadId,
@@ -80,7 +82,7 @@
 ## Notes
 
 -   Replace `'YOUR_API_KEY'` and `'YOUR_THREAD_ID'` with your actual API key and thread ID.
--   The `send` method captures the timestamp when called to avoid network latency in event timing.
+-   The `track` method captures the timestamp when called to avoid network latency in event timing.
 
 ## License
 
