@@ -30,7 +30,7 @@ class BotBench {
    * @param {string} event.type - The type of the message ('user' or 'bot').
    * @param {string} event.threadId - The thread ID.
    */
-  send(event) {
+  track(event) {
     const { message, type, threadId } = event;
     if (!message || !type || !threadId) {
       throw new Error('Missing message, type, or threadId');

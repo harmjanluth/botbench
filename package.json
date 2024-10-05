@@ -1,6 +1,6 @@
 {
   "name": "botbench",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "BotBench is an easy way of improving your bot and mitigating risks.",
   "main": "index.js",
   "scripts": {
