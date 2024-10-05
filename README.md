@@ -1,58 +1,63 @@
 
 # BotBench
 
-[](https://github.com/yourusername/botbench/blob/main/LICENSE)
+**BotBench** is a Node.js client for sending event data to the BotBench service, which stores and analyzes AI bot and user conversation threads.
 
-**BotBench** is a Node.js client that allows you to send events to the BotBench service using your API key. The service stores threads for AI bots and users, enabling analysis of conversations.
+## Key Features
 
-## Features
-
--   **Easy Integration**: Simple methods to interact with the BotBench service.
--   **Event Logging**: Send events of AI bot and user interactions.
--   **Client-side Timestamps**: Captures event timestamps to avoid network latency issues.
+- Simple Integration: Easy methods to interact with BotBench.
+- Event Logging: Log bot and user interactions.
+- Accurate Timestamps: Captures client-side timestamps to minimize latency impact.
 
 ## Installation
 
-`npm install botbench` 
+	npm install botbench
 
-## BETA
-BotBench is currently in closed beta, if you want to join please send a message to beta@botbench.io to get your API-key.
+## Beta Access
 
-1. Obtain an API-key.
-2. Implement the tracking code
+BotBench is in closed beta. To participate, email beta@botbench.io for an API key.
 
-### Initialization
+## Getting Started
 
-    const BotBench = require('botbench');
-    const botBenchClient = new BotBench('YOUR_API_KEY');` 
+### 1. Initialize the Client
 
-### Sending Events
+#### Using `require()` (CommonJS)
+	const BotBench = require('botbench');
+	const botBenchClient = new BotBench('YOUR_API_KEY'); // Replace with your API key
 
-    `// Construct message
-	const event = {
+#### Using `import` (ES Modules)
+	import BotBench from 'botbench';
+	const botBenchClient = new BotBench('YOUR_API_KEY'); // Replace with your API key
+
+### 2. Send Events
+
+You can send either user or bot events by specifying the event type and thread (or conversation) ID.
+
+#### Non-blocking Example
+
+	botBenchClient.track({
 	  message: 'Hello, World!',
-	  type: 'user', // 'user' or 'bot'          
-	  threadId: 'THREAD_ID',
-	};
-	
-	// Non-blocking 
-	botBenchClient.track({ message: 'Hello, World!', type: 'user', threadId: 'YOUR_THREAD_ID', });
+	  type: 'user', // 'user' or 'bot'
+	  threadId: 'YOUR_THREAD_ID',  // Replace with actual thread ID
+	});
 
-	// Blocking 
-	botBenchClient.track({ message: 'Hello, World!', type: 'user', threadId: 'YOUR_THREAD_ID', }) 
-	.then((response) => { console.log('Event sent successfully:', response.data); })
-	.catch((error) => { console.error('Error sending event:', error.message); });
+#### Blocking Example (with Promise Handling)
 
-**Note:** The `track` method automatically captures the client-side timestamp.
+	botBenchClient.track({
+	  message: 'Hello, World!',
+	  type: 'user',
+	  threadId: 'YOUR_THREAD_ID',
+	})
+	.then(response => console.log('Event sent:', response.data))
+	.catch(error => console.error('Error:', error.message));
 
 ## Example Usage
 
 	const BotBench = require('botbench');
 
-	// Initialize the client
-	const botBenchClient = new BotBench('YOUR_API_KEY');
+	// Initialize with your API key
+	const botBenchClient = new BotBench('YOUR_API_KEY'); 
 
-	// Simulate a conversation
 	async function simulateConversation() {
 	  const threadId = 'YOUR_THREAD_ID';
 
@@ -63,27 +68,28 @@ BotBench is currently in closed beta, if you want to join please send a message 
 	    threadId,
 	  });
 
-   	  /* ASSISTANT RESPONSE GENERATION CODE */
+	  // Your response generation code here
+	  const botResponse = await generateBotResponse('Hello, bot!'); // Example
 
 	  // Bot response
 	  await botBenchClient.track({
-	    message: 'Hello! How can I assist you today?',
+	    message: botResponse,
 	    type: 'bot',
 	    threadId,
 	  });
 
-	  console.log('Conversation events sent successfully.');
+	  console.log('Conversation logged successfully.');
 	}
 
-	simulateConversation().catch((error) => {
-	  console.error('Error:', error.message);
-	});` 
+	simulateConversation().catch(error => console.error('Error:', error.message));
+
+## Important Note
+- All incoming messages are **anonymized** to remove any personal data. We ensure that no personal identifying information (PII) is stored or processed.
 
 ## Notes
-
--   Replace `'YOUR_API_KEY'` and `'YOUR_THREAD_ID'` with your actual API key and thread ID.
--   The `track` method captures the timestamp when called to avoid network latency in event timing.
+- API Key and Thread ID: Replace 'YOUR_API_KEY' and 'YOUR_THREAD_ID' with your actual values.
+- Timestamp Handling: The track method automatically captures client-side timestamps to ensure event timing accuracy.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License. See the LICENSE file for more details.
