@@ -1,7 +1,7 @@
 {
   "name": "botbench",
-  "version": "0.0.4",
-  "description": "BotBench is an easy way of improving your bot and mitigating risks.",
+  "version": "0.0.5",
+  "description": "BotBench analyses your conversational AI bot and provides valuable insights for finetuning.",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -10,7 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/harmjanluth/botbench.git"
   },
-  "author": "Harm Jan Luth",
+  "author": {
+    "name": "Harm Jan",
+    "email": "harmjan@botbench.io"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/harmjanluth/botbench/issues"
